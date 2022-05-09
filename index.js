@@ -41,6 +41,25 @@ async function run() {
 
 run().catch(console.dir);
 
+async function add() {
+    try {
+        await client.connect();
+        const myProductCollection = client.db('shoeHub').collection('myShoes');
+
+        app.post('/myproduct', async (req, res) => {
+            const newProduct = req.body;
+            const result = await myProductCollection.insertOne(newProduct);
+            res.send(result);
+        })
+
+    }
+    finally {
+
+    }
+}
+
+add().catch(console.dir);
+
 
 
 
